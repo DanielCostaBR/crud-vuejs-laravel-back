@@ -23,19 +23,19 @@ class Data extends Model
     public function getAllDataTable(string $userId)
     {
         $query = DB::table('data')->where('fk_id_user_data', $userId)->get()->toArray();
-        return $this->toArrayTreated($query);
+        return $this->toArrayTreated($query); 
     }
 
-    public function getOneDataTable(string $id)
+    public function getOneDataTable(string $id): array
     {
         $query = DB::table('data')->where('id_data', $id)->get()->toArray();
         return $this->toArrayTreated($query);
     }
 
-    public function toArrayTreated(array $request)
+    public function toArrayTreated(array $request): array
     {
         if(empty($request)){
-            return response()->json(["data" => ""]);
+            return ["data" => ""];
         }
         foreach ($request as $key => $value) {
             $date = str_replace("-", "/", $request[$key]->createdAt_data);
@@ -43,13 +43,13 @@ class Data extends Model
             $array = array(
                 "userId" => $request[$key]->id_data,
                 "IdUserData" => $request[$key]->fk_id_user_data,
-                "value" => strval($request[$key]->value_data),
+                "value" => "R$ ". strval($request[$key]->value_data),
                 "description" => $request[$key]->description_data,
                 "createdAt" =>  $dateTreated
             );
             $response[] = $array;
         }
-        return ['data' => $response];
+        return ["data" => $response];
     }
 
     public function registerExpense(array $request, string $userId): void

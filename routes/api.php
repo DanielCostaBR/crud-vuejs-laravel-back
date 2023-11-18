@@ -8,6 +8,8 @@ use App\Http\Controllers\EditExpenseController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterExpenseController;
 use App\Http\Controllers\ValidateDateController;
+use App\Http\Controllers\VerifyPermissionController;
+
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [RegisterController::class, 'register']);
@@ -19,4 +21,5 @@ Route::post('data', [DataTableController::class, 'getAllRegisters']);
 Route::get('data/{id}', [DataTableController::class, 'getAllOneRegister']);
 Route::put('edit-expense/{id}', [EditExpenseController::class, 'editExpense']);
 Route::delete('remove/{id}', [DataTableController::class, 'delete']);
+Route::post('verify-permission-edit/{id}', [VerifyPermissionController::class, 'verifyPermissionEdit']);
 
