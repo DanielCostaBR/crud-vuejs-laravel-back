@@ -47,7 +47,6 @@ class RegisterService
     public function registerAccountArrayTreated($request): array
     {
         return array(
-            'name' => $request['name'],
             'email' => $request['email'],
             'email_verified_at' => now(),
             'password' => Hash::make($request['password']),
